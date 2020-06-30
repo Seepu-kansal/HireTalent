@@ -1,9 +1,8 @@
-package com.example.talent.model;
+package com.example.talent.dto;
 
+import java.io.Serializable;
 
-import java.util.Date;
-
-public class Offer {
+public class OfferDto implements Serializable {
 
     String jobTitle;
 

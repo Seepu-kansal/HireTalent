@@ -1,11 +1,15 @@
-package com.example.talent.model;
+package com.example.talent.dto;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.example.talent.model.AppModel;
 
-import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
-@Entity(name = "applications")
-public class AppEntity{
+public class AppDto implements Serializable {
+
+    String candEmail;
+    String offer;
+    String resume;
 
     public int getId() {
         return id;
@@ -15,15 +19,17 @@ public class AppEntity{
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(nullable = false, unique = true)
-    String candEmail;
+    public List<AppModel> getAppModelList() {
+        return appModelList;
+    }
 
-    @Column(nullable = false)
-    String offer;
+    public void setAppModelList(List<AppModel> appModelList) {
+        this.appModelList = appModelList;
+    }
+
+    public List<AppModel> appModelList;
 
     public String getCandEmail() {
         return candEmail;
@@ -45,7 +51,6 @@ public class AppEntity{
         return resume;
     }
 
-
     public void setResume(String resume) {
         this.resume = resume;
     }
@@ -58,10 +63,5 @@ public class AppEntity{
         this.appStatus = appStatus;
     }
 
-    @Column(nullable = false)
-    String resume;
-
-    @Column(nullable = false)
     String appStatus;
-
 }

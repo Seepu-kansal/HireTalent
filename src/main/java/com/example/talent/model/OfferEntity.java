@@ -1,5 +1,6 @@
 package com.example.talent.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -8,18 +9,23 @@ import javax.persistence.*;
 public class OfferEntity{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
     @Column(nullable = false, unique = true)
     String jobTitle;
+
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     @Column(nullable = false)
     String date;
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getJobTitle() {
         return jobTitle;
@@ -37,19 +43,15 @@ public class OfferEntity{
         this.date = date;
     }
 
-    public String getNumOfApp() {
+    public int getNumOfApp() {
         return numOfApp;
     }
 
-    public void setNumOfApp(String numOfApp) {
+    public void setNumOfApp(int numOfApp) {
         this.numOfApp = numOfApp;
     }
 
     @Column(nullable = false)
-    String numOfApp;
-
-    @OneToOne(mappedBy="offerEntity")
-    @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private AppEntity appEntity;
+    int numOfApp;
 
 }
